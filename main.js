@@ -1,3 +1,3 @@
 import HashMap from './hash-map.js';
 
-newHashMap = new HashMap();
+const newHashMap = new HashMap();
