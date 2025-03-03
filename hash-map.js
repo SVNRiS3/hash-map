@@ -2,7 +2,7 @@ export default class HashMap {
   load_factor = 0.8;
   capacity = 16;
   constructor() {
-    const buckets = this.createBuckets(this.capacity);
+    this.buckets = this.createBuckets(this.capacity);
   }
 
   createBuckets() {
@@ -31,5 +31,8 @@ export default class HashMap {
     return hashCode;
   }
 
-  set(key, value) {}
+  set(key, value) {
+    const hashKey = this.hash(key);
+    this.buckets[hashKey] = value;
+  }
 }
