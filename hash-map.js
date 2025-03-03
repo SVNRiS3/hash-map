@@ -38,8 +38,8 @@ export default class HashMap {
 
     if (this.buckets[hashKey] === null) {
       this.buckets[hashKey] = new LinkedList();
-    } else if (this.buckets[hashKey].contains(value)) {
-      //TODO
+    } else if (this.buckets[hashKey].containsKey(key, value)) {
+      this.buckets[hashKey].changeValue(key, value);
     } else {
       this.buckets[hashKey].append({ [key]: value });
     }

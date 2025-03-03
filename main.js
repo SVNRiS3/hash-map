@@ -14,6 +14,7 @@ newHashMap.set('ice cream', 'white');
 newHashMap.set('jacket', 'blue');
 newHashMap.set('kite', 'pink');
 newHashMap.set('lion', 'golden');
+newHashMap.set('hat', 'gold');
 
 console.log(newHashMap.buckets);
-console.log(newHashMap.buckets[11].headNode.next);
+console.log(newHashMap.buckets[11].toString());

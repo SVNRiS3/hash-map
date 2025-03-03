@@ -119,6 +119,17 @@ export default class LinkedList {
     return isFound ? index : null;
   }
 
+  changeValue(key, value) {
+    let valueKey = '';
+    this.iterator((current) => {
+      valueKey = Object.keys(current.value)[0];
+      if (valueKey === key) {
+        current.value[key] = value;
+        return false;
+      }
+    });
+  }
+
   toString() {
     let listString = '';
     let key = '';
