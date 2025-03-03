@@ -71,10 +71,10 @@ export default class LinkedList {
     prev.next = null;
   }
 
-  contains(value) {
+  containsValue(key, value) {
     let isFound = false;
     this.iterator((current) => {
-      if (current.value === value) {
+      if (current.value[key] === value) {
         isFound = true;
         return false;
       }
@@ -82,11 +82,35 @@ export default class LinkedList {
     return isFound;
   }
 
-  find(value) {
+  containsKey(key) {
+    let isFound = false;
+    this.iterator((current) => {
+      if (Object.keys(current.value)[0] === key) {
+        isFound = true;
+        return false;
+      }
+    });
+    return isFound;
+  }
+
+  findValue(key, value) {
     let index = 0;
     let isFound = false;
     this.iterator((current) => {
-      if (current.value === value) {
+      if (current.value[key] === value) {
+        isFound = true;
+        return false;
+      }
+      index++;
+    });
+    return isFound ? index : null;
+  }
+
+  findKey(key) {
+    let index = 0;
+    let isFound = false;
+    this.iterator((current) => {
+      if (Object.keys(current.value)[0] === key) {
         isFound = true;
         return false;
       }
@@ -97,9 +121,10 @@ export default class LinkedList {
 
   toString() {
     let listString = '';
-
+    let key = '';
     this.iterator((current) => {
-      listString += `( ${current.value} ) -> `;
+      key = Object.keys(current.value)[0];
+      listString += `( ${key}: ${current.value[key]} ) -> `;
     });
 
     listString += 'null';
