@@ -1,3 +1,5 @@
+import LinkedList from './linked-list.js';
+
 export default class HashMap {
   load_factor = 0.8;
   capacity = 16;
@@ -33,6 +35,13 @@ export default class HashMap {
 
   set(key, value) {
     const hashKey = this.hash(key);
-    this.buckets[hashKey] = value;
+
+    if (this.buckets[hashKey] === null) {
+      this.buckets[hashKey] = new LinkedList();
+    } else if (this.buckets[hashKey].contains(value)) {
+      //TODO
+    } else {
+      this.buckets[hashKey].append({ [key]: value });
+    }
   }
 }

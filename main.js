@@ -16,3 +16,4 @@ newHashMap.set('kite', 'pink');
 newHashMap.set('lion', 'golden');
 
 console.log(newHashMap.buckets);
+console.log(newHashMap.buckets[11].headNode.next);
