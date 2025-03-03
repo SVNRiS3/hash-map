@@ -3,6 +3,7 @@ import LinkedList from './linked-list.js';
 export default class HashMap {
   load_factor = 0.8;
   capacity = 16;
+  size = 0;
   constructor() {
     this.buckets = this.createBuckets(this.capacity);
   }
@@ -38,10 +39,33 @@ export default class HashMap {
 
     if (this.buckets[hashKey] === null) {
       this.buckets[hashKey] = new LinkedList();
+      this.size++;
     } else if (this.buckets[hashKey].containsKey(key, value)) {
       this.buckets[hashKey].changeValue(key, value);
     } else {
       this.buckets[hashKey].append({ [key]: value });
+      this.size++;
     }
+    this.checkBucketsSize();
+  }
+
+  checkBucketsSize() {
+    if (this.size > this.capacity * this.load_factor) {
+      this.capacity *= 2;
+      const newBuckets = this.createBuckets();
+      this.updateBucketsContents(newBuckets);
+    }
+  }
+
+  updateBucketsContents(bucketsToUpdate) {
+    Object.values(this.buckets).forEach((value) => {
+      if (value !== null) {
+        value.iterator((current) => {
+          let pair = current.value;
+          let key = Object.keys(pair)[0];
+          this.set();
+        });
+      }
+    });
   }
 }
