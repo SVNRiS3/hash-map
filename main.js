@@ -21,3 +21,4 @@ console.log(newHashMap.buckets[11].toString());
 console.log(newHashMap.size);
 console.log(newHashMap.capacity);
 console.log(newHashMap.get('carrot'));
+console.log(newHashMap.has('carrot'));

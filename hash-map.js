@@ -74,11 +74,18 @@ export default class HashMap {
 
   get(key) {
     const hashKey = this.hash(key);
-    console.log(hashKey);
     let value = null;
     if (this.buckets[hashKey] !== null) {
       value = this.buckets[hashKey].getValue(key);
     }
     return value;
+  }
+
+  has(key) {
+    const hashKey = this.hash(key);
+    if (this.buckets[hashKey] !== null) {
+      return this.buckets[hashKey].containsKey(key);
+    }
+    return false;
   }
 }
