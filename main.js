@@ -18,3 +18,4 @@ newHashMap.set('hat', 'gold');
 
 console.log(newHashMap.buckets);
 console.log(newHashMap.buckets[11].toString());
+console.log(newHashMap.size);

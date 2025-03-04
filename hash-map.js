@@ -1,7 +1,7 @@
 import LinkedList from './linked-list.js';
 
 export default class HashMap {
-  load_factor = 0.8;
+  load_factor = 0.6;
   capacity = 16;
   size = 0;
   constructor() {
@@ -13,7 +13,6 @@ export default class HashMap {
     for (let i = 0; i < this.capacity; i++) {
       bucketsObj[i] = null;
     }
-    console.log(bucketsObj);
     return bucketsObj;
   }
 
@@ -34,16 +33,17 @@ export default class HashMap {
     return hashCode;
   }
 
-  set(key, value) {
+  set(key, value, bucketsToSetTo = this.buckets) {
     const hashKey = this.hash(key);
 
-    if (this.buckets[hashKey] === null) {
-      this.buckets[hashKey] = new LinkedList();
+    if (bucketsToSetTo[hashKey] === null) {
+      bucketsToSetTo[hashKey] = new LinkedList();
+      bucketsToSetTo[hashKey].append({ [key]: value });
       this.size++;
-    } else if (this.buckets[hashKey].containsKey(key, value)) {
-      this.buckets[hashKey].changeValue(key, value);
+    } else if (bucketsToSetTo[hashKey].containsKey(key, value)) {
+      bucketsToSetTo[hashKey].changeValue(key, value);
     } else {
-      this.buckets[hashKey].append({ [key]: value });
+      bucketsToSetTo[hashKey].append({ [key]: value });
       this.size++;
     }
     this.checkBucketsSize();
@@ -51,21 +51,23 @@ export default class HashMap {
 
   checkBucketsSize() {
     if (this.size > this.capacity * this.load_factor) {
-      this.capacity *= 2;
-      const newBuckets = this.createBuckets();
-      this.updateBucketsContents(newBuckets);
+      this.updateBuckets();
     }
   }
 
-  updateBucketsContents(bucketsToUpdate) {
+  updateBuckets() {
+    this.capacity *= 2;
+    const newBuckets = this.createBuckets();
     Object.values(this.buckets).forEach((value) => {
       if (value !== null) {
         value.iterator((current) => {
           let pair = current.value;
           let key = Object.keys(pair)[0];
-          this.set();
+          this.set(key, pair[key], newBuckets);
         });
       }
     });
+
+    this.buckets = newBuckets;
   }
 }
