@@ -1,7 +1,7 @@
 import LinkedList from './linked-list.js';
 
 export default class HashMap {
-  load_factor = 0.6;
+  load_factor = 0.8;
   capacity = 16;
   size = 0;
   constructor() {
@@ -140,7 +140,7 @@ export default class HashMap {
     return valuesArray;
   }
 
-  pair() {
+  entries() {
     let pairArray = [];
     let linkedListPairArray = [];
 
