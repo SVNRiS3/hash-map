@@ -93,6 +93,17 @@ export default class LinkedList {
     return isFound;
   }
 
+  getValue(key) {
+    let value = null;
+    this.iterator((current) => {
+      if (Object.keys(current.value)[0] === key) {
+        value = current.value[key];
+        return false;
+      }
+    });
+    return value;
+  }
+
   findValue(key, value) {
     let index = 0;
     let isFound = false;

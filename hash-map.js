@@ -40,7 +40,7 @@ export default class HashMap {
       bucketsToSetTo[hashKey] = new LinkedList();
       bucketsToSetTo[hashKey].append({ [key]: value });
       this.size++;
-    } else if (bucketsToSetTo[hashKey].containsKey(key, value)) {
+    } else if (bucketsToSetTo[hashKey].containsKey(key)) {
       bucketsToSetTo[hashKey].changeValue(key, value);
     } else {
       bucketsToSetTo[hashKey].append({ [key]: value });
@@ -56,6 +56,7 @@ export default class HashMap {
   }
 
   updateBuckets() {
+    this.size = 0;
     this.capacity *= 2;
     const newBuckets = this.createBuckets();
     Object.values(this.buckets).forEach((value) => {
@@ -69,5 +70,15 @@ export default class HashMap {
     });
 
     this.buckets = newBuckets;
+  }
+
+  get(key) {
+    const hashKey = this.hash(key);
+    console.log(hashKey);
+    let value = null;
+    if (this.buckets[hashKey] !== null) {
+      value = this.buckets[hashKey].getValue(key);
+    }
+    return value;
   }
 }
