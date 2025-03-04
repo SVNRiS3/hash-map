@@ -101,4 +101,14 @@ export default class HashMap {
     }
     return false;
   }
+
+  length() {
+    return this.size;
+  }
+
+  clear() {
+    this.size = 0;
+    this.capacity = 16;
+    this.buckets = this.createBuckets();
+  }
 }
