@@ -154,6 +154,21 @@ export default class LinkedList {
     return listString;
   }
 
+  toArray(type) {
+    let arr = [];
+    let key = '';
+    this.iterator((current) => {
+      key = Object.keys(current.value)[0];
+      if (type === 'keys') {
+        arr.push(key);
+      } else if (type === 'values') {
+        arr.push(current.value[key]);
+      }
+    });
+
+    return arr;
+  }
+
   insertAt(value, index) {
     if (index === 0) {
       this.prepend(value);

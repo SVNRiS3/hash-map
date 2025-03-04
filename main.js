@@ -24,5 +24,7 @@ console.log(newHashMap.get('carrot'));
 console.log(newHashMap.has('carrot'));
 console.log(newHashMap.remove('carrrot'));
 console.log(newHashMap.length());
-console.log(newHashMap.clear());
+// console.log(newHashMap.clear());
 console.log(newHashMap.buckets);
+console.log(newHashMap.keys());
+console.log(newHashMap.values());

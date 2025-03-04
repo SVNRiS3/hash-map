@@ -111,4 +111,32 @@ export default class HashMap {
     this.capacity = 16;
     this.buckets = this.createBuckets();
   }
+
+  keys() {
+    let keysArray = [];
+    let linkedListKeysArray = [];
+
+    Object.values(this.buckets).forEach((value) => {
+      if (value !== null) {
+        linkedListKeysArray = value.toArray('keys');
+        keysArray = keysArray.concat(linkedListKeysArray);
+      }
+    });
+
+    return keysArray;
+  }
+
+  values() {
+    let valuesArray = [];
+    let linkedListvaluesArray = [];
+
+    Object.values(this.buckets).forEach((value) => {
+      if (value !== null) {
+        linkedListvaluesArray = value.toArray('values');
+        valuesArray = valuesArray.concat(linkedListvaluesArray);
+      }
+    });
+
+    return valuesArray;
+  }
 }
