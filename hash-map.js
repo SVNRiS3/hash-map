@@ -88,4 +88,17 @@ export default class HashMap {
     }
     return false;
   }
+
+  remove(key) {
+    const hashKey = this.hash(key);
+    if (this.buckets[hashKey] !== null) {
+      const index = this.buckets[hashKey].findKey(key);
+      if (index === null) {
+        return false;
+      }
+      this.buckets[hashKey].removeAt(index + 1);
+      return true;
+    }
+    return false;
+  }
 }
