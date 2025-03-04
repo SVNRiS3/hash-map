@@ -128,15 +128,29 @@ export default class HashMap {
 
   values() {
     let valuesArray = [];
-    let linkedListvaluesArray = [];
+    let linkedListValuesArray = [];
 
     Object.values(this.buckets).forEach((value) => {
       if (value !== null) {
-        linkedListvaluesArray = value.toArray('values');
-        valuesArray = valuesArray.concat(linkedListvaluesArray);
+        linkedListValuesArray = value.toArray('values');
+        valuesArray = valuesArray.concat(linkedListValuesArray);
       }
     });
 
     return valuesArray;
+  }
+
+  pair() {
+    let pairArray = [];
+    let linkedListPairArray = [];
+
+    Object.values(this.buckets).forEach((value) => {
+      if (value !== null) {
+        linkedListPairArray = value.toArray('pair');
+        pairArray = pairArray.concat(linkedListPairArray);
+      }
+    });
+
+    return pairArray;
   }
 }

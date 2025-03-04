@@ -163,6 +163,8 @@ export default class LinkedList {
         arr.push(key);
       } else if (type === 'values') {
         arr.push(current.value[key]);
+      } else if (type === 'pair') {
+        arr.push([key, current.value[key]]);
       }
     });
 

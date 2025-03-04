@@ -28,3 +28,4 @@ console.log(newHashMap.length());
 console.log(newHashMap.buckets);
 console.log(newHashMap.keys());
 console.log(newHashMap.values());
+console.log(newHashMap.pair());
