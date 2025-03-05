@@ -97,6 +97,7 @@ export default class HashMap {
         return false;
       }
       this.buckets[hashKey].removeAt(index + 1);
+      this.size--;
       return true;
     }
     return false;
